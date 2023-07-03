@@ -1,0 +1,72 @@
+import { useState } from "react";
+
+let tno = 1
+
+// 깨끗한 코드
+const initState = {title:'' , content:''}
+
+const TodoInput = ({addTodo}) => {
+
+    // 재사용 하고 싶어서 initState 라고 만들고 따로 분리 
+    const [obj,setObj] = useState({...initState})
+
+    const handleChange = (e) => {
+        // const prop = e.target.name
+        // const str = e.target.value
+
+        // obj[prop] = str
+
+        obj[e.target.name] = e.target.value
+
+        setObj({...obj})
+    }
+
+    // show를 누르면 로그창에 obj 
+    const handleAdd = () => {
+        console.log(obj)
+        
+        // add 를 누르면 obj를 펴서 집어넣고 tno는 하나 증가
+        addTodo({...obj, tno:tno++})
+
+        // 추가하고 초기화 값으로 돌리기
+        setObj({...initState})
+    }
+
+    // claer
+    const handleClear = () => {
+        setObj({...initState})
+    }
+
+    return ( 
+        <>
+            <div>
+                <label>제목</label>
+                <input 
+                className="border-8" 
+                type='text'
+                name='title'
+                value={obj.title} 
+                // input 태그를 사용하기 위한 이벤트
+                onChange={handleChange}/>
+            </div>
+            <div>
+                <label>내용</label>
+                <input
+                className="border-8" 
+                type='text'
+                name='content'
+                value={obj.content} 
+                onChange={handleChange}/>
+            </div>
+            <div>
+            <button onClick={handleAdd}>
+                Add
+            </button>
+            <button onClick={handleClear}>Clear</button>
+            </div>
+            
+        </>
+     );
+}
+ 
+export default TodoInput;
