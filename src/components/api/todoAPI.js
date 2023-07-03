@@ -8,8 +8,8 @@ export const getList = async() => {
 }
 
 export const postTodo = async (todo) => {
-
-    const res = await axios.post(`http://localhost:8080/api/todos/`, todo)
-
+    
+    const res = await axios.post('http://localhost:8080/api/todos/', todo)
+  
     return res.data
-}
+  }
