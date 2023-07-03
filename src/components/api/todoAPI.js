@@ -6,3 +6,10 @@ export const getList = async() => {
 
     return res.data
 }
+
+export const postTodo = async (todo) => {
+
+    const res = await axios.post(`http://localhost:8080/api/todos/`, todo)
+
+    return res.data
+}
